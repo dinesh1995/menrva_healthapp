@@ -347,6 +347,7 @@ def ui_login():
 @app.route('/ui/login_guest_patient', methods=['GET'])
 def ui_login_guest_patient():
 	session['user'] = 'c648964a-5933-11eb-aa2d-c6be8aa34a8b'
+	response = cassandra_request('GET', "/api/rest/v2/keyspaces/healthapp_keyspace/users/" + session['user'])
 	flash("Welcome "+response['data'][0]['name']+" !","success")
 	return redirect(url_for('ui_home'))
 
@@ -354,6 +355,7 @@ def ui_login_guest_patient():
 @app.route('/ui/login_guest_doctor', methods=['GET'])
 def ui_login_doctor_patient():
 	session['user'] = 'ee51d980-5933-11eb-aa2d-c6be8aa34a8b'
+	response = cassandra_request('GET', "/api/rest/v2/keyspaces/healthapp_keyspace/users/" + session['user'])
 	flash("Welcome "+response['data'][0]['name']+" !","success")
 	return redirect(url_for('ui_home'))
 
