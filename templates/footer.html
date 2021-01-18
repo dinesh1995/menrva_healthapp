@@ -1,0 +1,11 @@
+{% block footer %}
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	    $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){
+	        $("#success-alert").slideUp(500);
+	    });
+	    $("#error-alert").fadeTo(5000, 500).slideUp(500, function(){
+	        $("#error-alert").slideUp(500);
+	    });
+	</script>
+{% endblock %}
