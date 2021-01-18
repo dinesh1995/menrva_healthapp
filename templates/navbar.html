@@ -1,0 +1,46 @@
+<style>
+  .nav-links {
+    color: white
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/ui/home">Dashboard</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        {% if current_user['type'] == 'patient' %}
+          {% if view == 'doctors_list' %}
+            <a class="btn btn-secondary my-2 my-sm-0 nav-links" href="/ui/doctors_list">View Doctors</a>
+          {% else %}
+            <a class="btn btn-outline-secondary my-2 my-sm-0 nav-links" href="/ui/doctors_list">View Doctors</a>
+          {% endif %}
+        {% endif %}
+      </li>
+      <li class="nav-item">
+        {% if view == 'appointments' %}
+          <a class="btn btn-secondary my-2 my-sm-0 nav-links ml-2" href="/ui/appointments">Your Appointments</a>
+        {% else %}
+          <a class="btn btn-outline-secondary my-2 my-sm-0 nav-links ml-2" href="/ui/appointments">Your Appointments</a>
+        {% endif %}
+      </li>
+      <li class="nav-item">
+        {% if current_user['type'] == 'patient' %}
+          {% if view == 'medicines' %}
+            <a class="btn btn-secondary my-2 my-sm-0 nav-links ml-2" href="/ui/medicines">Your Medicines</a>
+          {% else %}
+            <a class="btn btn-outline-secondary my-2 my-sm-0 nav-links ml-2" href="/ui/medicines">Your Medicines</a>
+          {% endif %}
+        {% endif %}
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <a class="btn btn-outline-primary my-2 my-sm-0 mr-2" href="/ui/user/{{current_user['id']}}">View Profile</a>
+      <a class="btn btn-outline-danger my-2 my-sm-0" href="/ui/logout">Logout</a>
+    </form>
+  </div>
+</nav>
