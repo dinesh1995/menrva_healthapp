@@ -430,6 +430,10 @@ def ui_home():
 def ui_user(id):
 	current_user = check_auth(session)
 	user_data = cassandra_request('GET', "/api/rest/v2/keyspaces/healthapp_keyspace/users/" + id)['data'][0]
+	if user_data['type'] == 'patient':
+		medicines_url = "/api/rest/v2/keyspaces/healthapp_keyspace/medicines"
+		query_data = {'patient_id': {'$eq': user_data['id']}}
+		user_data['medicines'] = cassandra_request('GET', medicines_url, {}, {'where':json.dumps(query_data)})['data']
 	return render_template("user.html", current_user=current_user, user_data=user_data, view='users')
 
 
