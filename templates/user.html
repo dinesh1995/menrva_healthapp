@@ -708,19 +708,21 @@ background:#eee;
         		<a href="mailto:{{user_data['email']}}">{{user_data['email']}}</a>
         	</div>
           </div>
-          <div class="panel">
-            <div class="panel-heading">
-            	<span class="panel-icon">
-                	<i class="fa fa-user-md"></i>
-              	</span>
-              	<span class="panel-title">Medicine details</span>
-            </div>
-            {% for medicine in user_data['medicines'] %}
-            <div class="panel-body pb5">
-        		<img class="img-fluid mr-2" src="https://cdn0.iconfinder.com/data/icons/health-icons-rounded/110/Medicine-2-512.png" alt="" style="width: 20px; height: 20px;">{{medicine['name']}} - {{medicine['quantity']}}
-        	</div>
-        	{% endfor %}
-          </div>
+          {% if user_data['type'] == 'patient' %}
+	          <div class="panel">
+	            <div class="panel-heading">
+	            	<span class="panel-icon">
+	                	<i class="fa fa-user-md"></i>
+	              	</span>
+	              	<span class="panel-title">Medicine details</span>
+	            </div>
+	            {% for medicine in user_data['medicines'] %}
+	            <div class="panel-body pb5">
+	        		<img class="img-fluid mr-2" src="https://cdn0.iconfinder.com/data/icons/health-icons-rounded/110/Medicine-2-512.png" alt="" style="width: 20px; height: 20px;">{{medicine['name']}} - {{medicine['quantity']}}
+	        	</div>
+	        	{% endfor %}
+	          </div>
+          {% endif %}
         </div>
         <div class="col-md-8 mt-2">
             <div class="panel">
