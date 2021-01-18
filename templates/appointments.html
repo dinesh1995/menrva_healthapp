@@ -1,0 +1,475 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+{% include 'flash.html' %}
+
+<style>
+body{
+    background-color: #f8f9fa!important
+}
+.p-4 {
+    padding: 1.5rem!important;
+}
+.mb-0, .my-0 {
+    margin-bottom: 0!important;
+}
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}    
+}
+/* user-dashboard-info-box */
+.user-dashboard-info-box .candidates-list .thumb {
+    margin-right: 20px;
+}
+.user-dashboard-info-box .candidates-list .thumb img {
+    width: 80px;
+    height: 80px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.user-dashboard-info-box .title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.user-dashboard-info-box .candidates-list td {
+    vertical-align: middle;
+}
+
+.user-dashboard-info-box td li {
+    margin: 0 4px;
+}
+
+.user-dashboard-info-box .table thead th {
+    border-bottom: none;
+}
+
+.table.manage-candidates-top th {
+    border: 0;
+}
+
+.user-dashboard-info-box .candidate-list-favourite-time .candidate-list-favourite {
+    margin-bottom: 10px;
+}
+
+.table.manage-candidates-top {
+    min-width: 650px;
+}
+
+.user-dashboard-info-box .candidate-list-details ul {
+    color: #969696;
+}
+
+/* Candidate List */
+.candidate-list {
+    background: #ffffff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-bottom: 1px solid #eeeeee;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 20px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.candidate-list:hover {
+    -webkit-box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
+    box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
+    position: relative;
+    z-index: 99;
+}
+.candidate-list:hover a.candidate-list-favourite {
+    color: #e74c3c;
+    -webkit-box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1);
+    box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1);
+}
+
+.candidate-list .candidate-list-image {
+    margin-right: 25px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 80px;
+    flex: 0 0 80px;
+    border: none;
+}
+.candidate-list .candidate-list-image img {
+    width: 80px;
+    height: 80px;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.candidate-list-title {
+    margin-bottom: 5px;
+}
+
+.candidate-list-details ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-bottom: 0px;
+}
+.candidate-list-details ul li {
+    margin: 5px 10px 5px 0px;
+    font-size: 13px;
+}
+
+.candidate-list .candidate-list-favourite-time {
+    margin-left: auto;
+    text-align: center;
+    font-size: 13px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 90px;
+    flex: 0 0 90px;
+}
+.candidate-list .candidate-list-favourite-time span {
+    display: block;
+    margin: 0 auto;
+}
+.candidate-list .candidate-list-favourite-time .candidate-list-favourite {
+    display: inline-block;
+    position: relative;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    border: 1px solid #eeeeee;
+    border-radius: 100%;
+    text-align: center;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #646f79;
+}
+.candidate-list .candidate-list-favourite-time .candidate-list-favourite:hover {
+    background: #ffffff;
+    color: #e74c3c;
+}
+
+.candidate-banner .candidate-list:hover {
+    position: inherit;
+    -webkit-box-shadow: inherit;
+    box-shadow: inherit;
+    z-index: inherit;
+}
+
+.bg-white {
+    background-color: #ffffff !important;
+}
+.p-4 {
+    padding: 1.5rem!important;
+}
+.mb-0, .my-0 {
+    margin-bottom: 0!important;
+}
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+
+.user-dashboard-info-box .candidates-list .thumb {
+    margin-right: 20px;
+}
+.weekDays-selector input {
+  display: none!important;
+}
+
+.weekDays-selector input[type=checkbox] + label {
+  display: inline-block;
+  border-radius: 6px;
+  background: #dddddd;
+  height: 40px;
+  width: 50px;
+  margin-right: 3px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.weekDays-selector input[type=checkbox]:checked + label {
+  background: #2AD705;
+  color: #ffffff;
+}
+
+</style>
+<br>
+<div class="page-header d-flex justify-content-center">
+	<h3>Upcoming Appointments</h3>      
+</div>
+<br>
+<div class="container mt-3 mb-4 d-flex justify-content-center">
+<div class="col-lg-9 mt-4 mt-lg-0">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+          <table class="table manage-candidates-top mb-0">
+            <thead>
+              <tr>
+                <th>{% if current_user['type'] == 'patient' %}Doctor{% else %}Patient{% endif %}</th>
+                <th class="text-center">From</th>
+                <th class="text-center">To</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for apmt in upcoming_apmts %}
+              <tr class="candidates-list">
+                <td class="title">
+                  <div class="thumb">
+                    <img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+                  </div>
+                  <div class="candidate-list-details">
+                    <div class="candidate-list-info">
+                      <div class="candidate-list-title">
+                      	<h5 class="mb-0">
+                        	{% if current_user['type'] == 'patient' %}
+                        		<a href="/ui/user/{{apmt['doctor_id']}}">{{apmt['doctor_name']}}</a>
+                        	{% else %}
+                        		<a href="/ui/user/{{apmt['patient_id']}}">{{apmt['patient_name']}}</a>
+                        	{% endif %}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td class="candidate-list-favourite-time text-center">
+                  <span class="candidate-list-time order-1">{{apmt['start_time_data']}}</span>
+                </td>
+                <td>
+                  <span class="candidate-list-time order-1">{{apmt['end_time_data']}}</span>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<div class="page-header d-flex justify-content-center">
+	<h3>Past Appointments</h3>      
+</div>
+<br>
+<div class="container mt-3 mb-4 d-flex justify-content-center">
+<div class="col-lg-9 mt-4 mt-lg-0">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+          <table class="table manage-candidates-top mb-0">
+            <thead>
+              <tr>
+                <th>{% if current_user['type'] == 'patient' %}Doctor{% else %}Patient{% endif %}</th>
+                <th class="text-center">From</th>
+                <th class="text-center">To</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for apmt in archived_apmts %}
+              <tr class="candidates-list">
+                <td class="title">
+                  <div class="thumb">
+                    <img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+                  </div>
+                  <div class="candidate-list-details">
+                    <div class="candidate-list-info">
+                      <div class="candidate-list-title">
+                        <h5 class="mb-0">
+                        	{% if current_user['type'] == 'patient' %}
+                        		<a href="/ui/user/{{apmt['doctor_id']}}">{{apmt['doctor_name']}}</a>
+                        	{% else %}
+                        		<a href="/ui/user/{{apmt['patient_id']}}">{{apmt['patient_name']}}</a>
+                        	{% endif %}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td class="candidate-list-favourite-time text-center">
+                  <span class="candidate-list-time order-1">{{apmt['start_time_data']}}</span>
+                </td>
+                <td>
+                  <span class="candidate-list-time order-1">{{apmt['end_time_data']}}</span>
+                </td>
+                {% if current_user['type'] == 'doctor' %}
+                <td>
+              		<button type="button" class="btn btn-danger mt-3 btn-rounded waves-effect w-md waves-light add-med-btn" data-toggle="modal" data-target="#addMedicineModal" id="{{apmt['patient_id']}}" data-name="{{apmt['patient_name']}}">Add Medicine</button>
+              	</td>
+              	{% endif %}
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- The Book Appointment Modal -->
+<div class="modal" id="addMedicineModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Medicine</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+		<div class="input-append date form_datetime">
+			<div class="container">
+				<div class="row">
+                    <input type="hidden" doctor-id="" id="patient-id"/>
+                    <div class="form-group">
+                    	<label for="medicineName"><b>Medicine Name:</b></label>
+                    	<input type="text" class="form-control" name="medicineName" id="medicineName" placeholder="Enter Medicine name" required/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                    	<label for="medicineName"><b>Quantity:</b></label>
+                    	<input type="text" class="form-control" name="quantity" id="quantity" placeholder="Ex: 5mg" required/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+	                    <label for="intake-days"><b>Select medicine intake days:</b></label>
+	                    <div class="weekDays-selector" id="intake-days">
+						  <input type="checkbox" id="weekday-mon" class="weekday" />
+						  <label for="weekday-mon">Mon</label>
+						  <input type="checkbox" id="weekday-tue" class="weekday" />
+						  <label for="weekday-tue">Tue</label>
+						  <input type="checkbox" id="weekday-wed" class="weekday" />
+						  <label for="weekday-wed">Wed</label>
+						  <input type="checkbox" id="weekday-thu" class="weekday" />
+						  <label for="weekday-thu">Thur</label>
+						  <input type="checkbox" id="weekday-fri" class="weekday" />
+						  <label for="weekday-fri">Fri</label>
+						  <input type="checkbox" id="weekday-sat" class="weekday" />
+						  <label for="weekday-sat">Sat</label>
+						  <input type="checkbox" id="weekday-sun" class="weekday" />
+						  <label for="weekday-sun">Sun</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="intake-time"><b>Select medicine intake time:</b></label>
+					    <div class="column ml-2">
+						    <select id="intake-time" class="timepicker form-control">
+						    	<option value="00:00">00:00</option>
+						    	<option value="01:00">01:00</option>
+						    	<option value="02:00">02:00</option>
+						    	<option value="03:00">03:00</option>
+						    	<option value="04:00">04:00</option>
+						    	<option value="05:00">05:00</option>
+						    	<option value="06:00">06:00</option>
+						    	<option value="07:00">07:00</option>
+						    	<option value="08:00">08:00</option>
+						    	<option value="09:00">09:00</option>
+						    	<option value="10:00">10:00</option>
+						    	<option value="11:00">11:00</option>
+						    	<option value="12:00">12:00</option>
+						    	<option value="13:00">13:00</option>
+						    	<option value="14:00">14:00</option>
+						    	<option value="15:00">15:00</option>
+						    	<option value="16:00">16:00</option>
+						    	<option value="17:00">17:00</option>
+						    	<option value="18:00">18:00</option>
+						    	<option value="19:00">19:00</option>
+						    	<option value="20:00">20:00</option>
+						    	<option value="21:00">21:00</option>
+						    	<option value="22:00">22:00</option>
+						    	<option value="23:00">23:00</option>
+						    </select>
+						</div>
+					</div>
+			    </div>
+			</div>
+		</div>
+        <div id="respone-text" class="mt-2">
+            
+        </div>            
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="add-medicine-btn" onclick=(add_medicine(this))>Add</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+	$(function() {
+	  $('.add-med-btn').click(function(event) {
+	    event.preventDefault();
+	    $('.modal-title').text("Add Medicine for " + $(this).attr('data-name'))
+	    $('#patient-id').attr('patient-id', $(this).attr('id'));
+	  });
+	});
+
+	function add_medicine(event){
+        $('#add-medicine-btn').attr('disabled',true);
+        $('#add-medicine-btn').text('Adding...');
+        var medicineName = $('#medicineName').val();
+        var intakeTime = $('#intake-time').val();
+        var quantity = $('#quantity').val();
+        var daytime = [];
+        if($('#weekday-mon').is(':checked')){
+        	daytime.push("Mon-"+intakeTime)
+        }
+        if($('#weekday-tue').is(':checked')){
+        	daytime.push("Tue-"+intakeTime)
+        }
+        if($('#weekday-wed').is(':checked')){
+        	daytime.push("Wed-"+intakeTime)
+        }
+        if($('#weekday-thu').is(':checked')){
+        	daytime.push("Thur-"+intakeTime)
+        }
+        if($('#weekday-fri').is(':checked')){
+        	daytime.push("Fri-"+intakeTime)
+        }
+        if($('#weekday-sat').is(':checked')){
+        	daytime.push("Sat-"+intakeTime)
+        }
+        if($('#weekday-sun').is(':checked')){
+        	daytime.push("Sun-"+intakeTime)
+        }
+        var patient_id = $('#patient-id').attr('patient-id');
+        $.ajax({
+            type: 'POST',
+            url: '/ui/add_medicine',
+            data: {
+                'name': medicineName, 'patient_id': patient_id, 'quantity': quantity, 'intake_day_time': daytime
+            },
+            success: function(response) {
+                if(response.success == 'true'){
+                    $('#respone-text').html('<p>Medicine added successfully!</p>')
+                    $('#add-medicine-btn').text('Done');
+                }
+                else{
+                    $('#respone-text').html('<p>Error in adding medicine! Try again later</p>')
+                }
+            },
+            error: function(){
+                $('#respone-text').html('<p>Error in adding medicine! Try again later</p>')
+            }
+        });
+    }
+</script>
+{% include 'footer.html' %}
