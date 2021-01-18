@@ -344,6 +344,20 @@ def ui_login():
 			return redirect(request.referrer)
 
 
+@app.route('/ui/login_guest_patient', methods=['GET'])
+def ui_login_guest_patient():
+	session['user'] = 'c648964a-5933-11eb-aa2d-c6be8aa34a8b'
+	flash("Welcome "+response['data'][0]['name']+" !","success")
+	return redirect(url_for('ui_home'))
+
+
+@app.route('/ui/login_guest_doctor', methods=['GET'])
+def ui_login_doctor_patient():
+	session['user'] = 'ee51d980-5933-11eb-aa2d-c6be8aa34a8b'
+	flash("Welcome "+response['data'][0]['name']+" !","success")
+	return redirect(url_for('ui_home'))
+
+
 @app.route('/ui/register', methods=['GET','POST'])
 def ui_register():
 	if request.method == 'GET':
