@@ -15,14 +15,15 @@ app.secret_key = "test1234"
 auth_token = ''
 
 def get_auth_token(force=False):
-	global auth_token
-	if auth_token == '' or force:
-		auth_url = "https://04f17b24-94cd-447b-82ef-1b391e99778e-us-east1.apps.astra.datastax.com/api/rest/v1/auth"
-		auth_headers = {'Content-type': 'application/json'}
-		auth_data = {"username":os.environ.get('db_username'),"password":os.environ.get('db_password')}
-		response = requests.post(auth_url, headers=auth_headers, json=auth_data)
-		auth_token = response.json()['authToken']
-	return auth_token
+# 	global auth_token
+# 	if auth_token == '' or force:
+# 		auth_url = "https://04f17b24-94cd-447b-82ef-1b391e99778e-us-east1.apps.astra.datastax.com/api/rest/v1/auth"
+# 		auth_headers = {'Content-type': 'application/json'}
+# 		auth_data = {"username":os.environ.get('db_username'),"password":os.environ.get('db_password')}
+# 		response = requests.post(auth_url, headers=auth_headers, json=auth_data)
+# 		auth_token = response.json()['authToken']
+# 	return auth_token
+	return os.environ.get('db_token')
 
 def cassandra_request(type, url, data={}, params=""):
 	base_url = "https://04f17b24-94cd-447b-82ef-1b391e99778e-us-east1.apps.astra.datastax.com"
